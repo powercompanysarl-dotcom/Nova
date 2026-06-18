@@ -153,16 +153,23 @@
     }
     .nv-scrollhint span { font-size: 1.2rem; animation: nvbob 1.6s infinite; }
     @keyframes nvbob { 0%,100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(6px); opacity: 1; } }
+
+    /* Repli si la 3D est indisponible : pas d'écran noir vide */
+    #nv-stage.no3d { height: auto; }
+    #nv-stage.no3d #nv-sticky {
+      position: relative; height: 86vh; min-height: 460px;
+      background:
+        radial-gradient(700px circle at 30% 25%, rgba(77,141,255,0.22), transparent 60%),
+        radial-gradient(600px circle at 72% 30%, rgba(56,232,160,0.18), transparent 60%),
+        linear-gradient(180deg, #0a0e1a, #0c1326);
+    }
+    #nv-stage.no3d .nv-caption { position: relative; opacity: 1 !important; }
+    #nv-stage.no3d .nv-caption ~ .nv-caption { display: none; }
+    #nv-stage.no3d .nv-scrollhint { display: none; }
   </style>
 
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-    }
-  }
-  </script>
+  <!-- Three.js (build classique global, compatible ouverture directe) -->
+  <script src="https://unpkg.com/three@0.137.0/build/three.min.js"></script>
 </head>
 <body>
   <header>
@@ -561,6 +568,6 @@
   </script>
 
   <!-- Moteur 3D cinématique (Three.js) -->
-  <script type="module" src="bugatti.js"></script>
+  <script src="bugatti.js"></script>
 </body>
 </html>
