@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Novaris Mobility — la mobilité électrique, intelligente et durable. Recharge, flottes et solutions énergétiques." />
+  <title>Novaris Mobility — La mobilité de demain</title>
+  <style>
+    :root {
+      --bg: #0a0e1a;
+      --bg-soft: #111729;
+      --card: #151c30;
+      --accent: #38e8a0;
+      --accent-2: #4d8dff;
+      --text: #e7ecf5;
+      --muted: #9aa6bd;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(10, 14, 26, 0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid; place-items: center; color: #04121a; font-weight: 900;
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn {
+      display: inline-block; padding: 12px 22px; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem; cursor: pointer; border: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #04121a;
+      box-shadow: 0 8px 30px rgba(56, 232, 160, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(56, 232, 160, 0.35); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); }
+
+    /* Hero */
+    .hero { position: relative; padding: 110px 0 90px; text-align: center; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(600px circle at 30% 20%, rgba(77, 141, 255, 0.18), transparent 60%),
+        radial-gradient(500px circle at 75% 30%, rgba(56, 232, 160, 0.15), transparent 60%);
+      pointer-events: none;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 16px; border-radius: 999px;
+      background: var(--bg-soft); border: 1px solid var(--border);
+      color: var(--muted); font-size: 0.85rem; margin-bottom: 28px;
+    }
+    .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 850; letter-spacing: -0.03em;
+      line-height: 1.05; margin-bottom: 22px;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { font-size: 1.2rem; color: var(--muted); max-width: 620px; margin: 0 auto 38px; }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* Stats */
+    .stats { display: flex; gap: 48px; justify-content: center; margin-top: 70px; flex-wrap: wrap; }
+    .stat .num { font-size: 2.2rem; font-weight: 800; color: var(--text); }
+    .stat .lbl { color: var(--muted); font-size: 0.9rem; }
+
+    /* Sections */
+    section.block { padding: 90px 0; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto 60px; }
+    .section-head h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .section-head p { color: var(--muted); font-size: 1.05rem; }
+    .eyebrow { color: var(--accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; display: block; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 32px; transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(56, 232, 160, 0.4); }
+    .card .ico {
+      width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(56,232,160,0.15), rgba(77,141,255,0.15));
+      font-size: 1.5rem; margin-bottom: 20px;
+    }
+    .card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+
+    /* CTA */
+    .cta {
+      margin: 0 24px; border-radius: 24px; padding: 70px 40px; text-align: center;
+      background: linear-gradient(135deg, rgba(56,232,160,0.12), rgba(77,141,255,0.12));
+      border: 1px solid var(--border);
+    }
+    .cta h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .cta p { color: var(--muted); margin-bottom: 32px; font-size: 1.05rem; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 48px 0; margin-top: 40px; }
+    .footer-grid { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-grid p { color: var(--muted); font-size: 0.9rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--muted); font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      .grid { grid-template-columns: 1fr; }
+      .stats { gap: 32px; }
+    }
+
+    /* 3D cinematic stage */
+    #nv-stage { position: relative; height: 360vh; }
+    #nv-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+    #nv-3d { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .nv-overlay { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; padding: 0 24px; }
+    .nv-caption {
+      position: absolute; text-align: center; max-width: 720px;
+      opacity: 0; transition: opacity 0.6s ease;
+    }
+    .nv-3d-title { font-size: clamp(2.2rem, 7vw, 4.6rem); font-weight: 850; letter-spacing: -0.03em; line-height: 1.04; margin: 10px 0 16px; }
+    .nv-caption p { color: var(--muted); font-size: 1.15rem; }
+    .nv-scrollhint {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      color: var(--muted); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .nv-scrollhint span { font-size: 1.2rem; animation: nvbob 1.6s infinite; }
+    @keyframes nvbob { 0%,100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(6px); opacity: 1; } }
+
+    /* Repli si la 3D est indisponible : pas d'écran noir vide */
+    #nv-stage.no3d { height: auto; }
+    #nv-stage.no3d #nv-sticky {
+      position: relative; height: 86vh; min-height: 460px;
+      background:
+        radial-gradient(700px circle at 30% 25%, rgba(77,141,255,0.22), transparent 60%),
+        radial-gradient(600px circle at 72% 30%, rgba(56,232,160,0.18), transparent 60%),
+        linear-gradient(180deg, #0a0e1a, #0c1326);
+    }
+    #nv-stage.no3d .nv-caption { position: relative; opacity: 1 !important; }
+    #nv-stage.no3d .nv-caption ~ .nv-caption { display: none; }
+    #nv-stage.no3d .nv-scrollhint { display: none; }
+  </style>
+
+  <!-- Three.js (build classique global, compatible ouverture directe) -->
+  <script src="https://unpkg.com/three@0.137.0/build/three.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <span class="logo-mark">N</span>
+        Novaris<span style="color:var(--accent)">Mobility</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#ia">Agents IA</a>
+        <a href="#avantages">Avantages</a>
+        <a href="#reseau">Réseau</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn btn-primary">Demander une démo</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Séquence cinématique 3D : showroom → entrée dans l'habitacle -->
+    <section id="nv-stage">
+      <div id="nv-sticky">
+        <canvas id="nv-3d"></canvas>
+        <div class="nv-overlay">
+          <div class="nv-caption" style="opacity:1">
+            <span class="eyebrow">Novaris Mobility</span>
+            <h1 class="nv-3d-title">Une œuvre d'<span class="grad">ingénierie</span></h1>
+            <p>Découvrez la machine. Faites défiler pour vivre l'expérience.</p>
+          </div>
+          <div class="nv-caption">
+            <span class="eyebrow">Puissance</span>
+            <h1 class="nv-3d-title">Approchez. <span class="grad">Ressentez.</span></h1>
+            <p>Chaque ligne sculptée pour fendre l'air.</p>
+          </div>
+          <div class="nv-caption">
+            <span class="eyebrow">À bord</span>
+            <h1 class="nv-3d-title">Installez-vous. <span class="grad">Bienvenue.</span></h1>
+            <p>L'habitacle où l'IA pilote votre énergie.</p>
+          </div>
+        </div>
+        <div class="nv-scrollhint">Défilez <span>↓</span></div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="container">
+        <span class="badge"><span class="dot"></span> La mobilité électrique nouvelle génération</span>
+        <h1>Bougez plus loin avec <span class="grad">l'énergie propre</span></h1>
+        <p>Novaris Mobility connecte véhicules, bornes de recharge et énergie renouvelable dans une plateforme unique — pour les particuliers comme pour les flottes.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Démarrer maintenant</a>
+          <a href="#solutions" class="btn btn-ghost">Découvrir les solutions</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="num">12 000+</div><div class="lbl">Bornes connectées</div></div>
+          <div class="stat"><div class="num">98%</div><div class="lbl">Énergie renouvelable</div></div>
+          <div class="stat"><div class="num">24/7</div><div class="lbl">Support & supervision</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="solutions">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Nos solutions</span>
+          <h2>Une plateforme, toute la mobilité</h2>
+          <p>De la recharge intelligente à la gestion de flotte, Novaris couvre chaque étape de votre transition électrique.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="ico">⚡</div>
+            <h3>Recharge intelligente</h3>
+            <p>Bornes pilotées en temps réel, recharge optimisée selon les tarifs et la disponibilité du réseau.</p>
+          </div>
+          <div class="card">
+            <div class="ico">🚐</div>
+            <h3>Gestion de flotte</h3>
+            <p>Supervisez vos véhicules, planifiez les trajets et réduisez vos coûts énergétiques de bout en bout.</p>
+          </div>
+          <div class="card">
+            <div class="ico">🔋</div>
+            <h3>Stockage & énergie</h3>
+            <p>Batteries et panneaux solaires intégrés pour produire, stocker et consommer votre propre énergie.</p>
+          </div>
+          <div class="card">
+            <div class="ico">📱</div>
+            <h3>Application mobile</h3>
+            <p>Localisez une borne, lancez une recharge et suivez votre consommation depuis votre smartphone.</p>
+          </div>
+          <div class="card">
+            <div class="ico">📊</div>
+            <h3>Analytique avancée</h3>
+            <p>Tableaux de bord clairs sur vos émissions évitées, vos coûts et vos performances énergétiques.</p>
+          </div>
+          <div class="card">
+            <div class="ico">🛡️</div>
+            <h3>Fiabilité garantie</h3>
+            <p>Supervision 24/7, maintenance prédictive et disponibilité maximale de votre infrastructure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="ia" style="background:var(--bg-soft);">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Intelligence artificielle</span>
+          <h2>Des agents IA qui pilotent votre mobilité</h2>
+          <p>Novaris intègre des assistants intelligents qui répondent, optimisent et automatisent — 24h/24, sans attente.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="ico">🤖</div>
+            <h3>Assistant conversationnel</h3>
+            <p>Un chatbot disponible en permanence pour vos clients : trouver une borne, lancer une recharge, suivre une facture.</p>
+          </div>
+          <div class="card">
+            <div class="ico">🧠</div>
+            <h3>Optimisation autonome</h3>
+            <p>Nos agents IA ajustent la recharge en temps réel selon les prix de l'énergie et la demande du réseau.</p>
+          </div>
+          <div class="card">
+            <div class="ico">🔮</div>
+            <h3>Maintenance prédictive</h3>
+            <p>Détection des anomalies avant la panne : l'IA anticipe les interventions et maximise la disponibilité.</p>
+          </div>
+          <div class="card">
+            <div class="ico">📅</div>
+            <h3>Planification de flotte</h3>
+            <p>L'agent organise trajets, recharges et rotations pour réduire les coûts et les temps d'arrêt.</p>
+          </div>
+          <div class="card">
+            <div class="ico">💬</div>
+            <h3>Support multicanal</h3>
+            <p>WhatsApp, web, email : un même agent IA répond partout, dans la langue de vos clients.</p>
+          </div>
+          <div class="card">
+            <div class="ico">📈</div>
+            <h3>Insights automatiques</h3>
+            <p>Rapports générés par l'IA sur votre consommation, vos économies et votre impact carbone.</p>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:48px;">
+          <button class="btn btn-primary" onclick="window.novarisChat&&window.novarisChat.open()">💬 Essayer l'assistant IA</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="avantages">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Pourquoi Novaris</span>
+          <h2>L'énergie au service de votre liberté</h2>
+          <p>Nous rendons la mobilité électrique simple, rentable et durable — sans compromis.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="ico">🌍</div>
+            <h3>100% durable</h3>
+            <p>Une énergie verte certifiée et un impact carbone mesuré à chaque kilomètre parcouru.</p>
+          </div>
+          <div class="card">
+            <div class="ico">💸</div>
+            <h3>Économies réelles</h3>
+            <p>Jusqu'à 40% d'économies sur vos coûts de carburant grâce à la recharge optimisée.</p>
+          </div>
+          <div class="card">
+            <div class="ico">🔌</div>
+            <h3>Installation clé en main</h3>
+            <p>Étude, pose et mise en service par nos équipes certifiées, partout en Suisse et en Europe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="reseau">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Notre réseau</span>
+          <h2>Toujours une borne à portée</h2>
+          <p>Un réseau interopérable qui s'agrandit chaque jour pour vous accompagner sur la route.</p>
+        </div>
+        <div class="grid">
+          <div class="card"><div class="ico">🏙️</div><h3>En ville</h3><p>Recharge rapide sur les axes urbains et les parkings partenaires.</p></div>
+          <div class="card"><div class="ico">🛣️</div><h3>Sur autoroute</h3><p>Stations ultra-rapides pour les longs trajets sans attente.</p></div>
+          <div class="card"><div class="ico">🏠</div><h3>À domicile</h3><p>Bornes résidentielles connectées et pilotables à distance.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="contact">
+      <div class="container">
+        <div class="cta">
+          <h2>Prêt à passer à l'électrique ?</h2>
+          <p>Parlons de votre projet de mobilité. Nos experts vous répondent sous 24 h.</p>
+          <a href="mailto:powercompanysarl@gmail.com" class="btn btn-primary">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="logo">
+        <span class="logo-mark">N</span>
+        Novaris<span style="color:var(--accent)">Mobility</span>
+      </div>
+      <p>© 2026 Novaris Mobility — Power Company SARL. Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#reseau">Réseau</a>
+        <a href="mailto:powercompanysarl@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot IA Novaris -->
+  <div id="nv-chat">
+    <button id="nv-launcher" aria-label="Ouvrir l'assistant IA">
+      <span class="nv-launcher-ico">💬</span>
+    </button>
+    <div id="nv-window" role="dialog" aria-label="Assistant IA Novaris">
+      <div class="nv-header">
+        <div class="nv-header-info">
+          <span class="nv-avatar">N</span>
+          <div>
+            <strong>Assistant Novaris</strong>
+            <span class="nv-status"><span class="nv-dot"></span> En ligne · IA</span>
+          </div>
+        </div>
+        <button class="nv-close" aria-label="Fermer">✕</button>
+      </div>
+      <div class="nv-body" id="nv-messages"></div>
+      <div class="nv-quick" id="nv-quick">
+        <button data-q="Où trouver une borne ?">📍 Trouver une borne</button>
+        <button data-q="Comment lancer une recharge ?">⚡ Lancer une recharge</button>
+        <button data-q="Quels sont vos tarifs ?">💸 Tarifs</button>
+        <button data-q="Je veux parler à un humain">🧑 Un conseiller</button>
+      </div>
+      <form class="nv-input" id="nv-form" autocomplete="off">
+        <input type="text" id="nv-text" placeholder="Écrivez votre message…" aria-label="Message" />
+        <button type="submit" aria-label="Envoyer">➤</button>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    #nv-chat { position: fixed; bottom: 24px; right: 24px; z-index: 100; font-family: inherit; }
+    #nv-launcher {
+      width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 30px rgba(56,232,160,0.4); font-size: 1.6rem;
+      display: grid; place-items: center; transition: transform 0.2s;
+    }
+    #nv-launcher:hover { transform: scale(1.08); }
+    #nv-window {
+      position: absolute; bottom: 76px; right: 0; width: 360px; max-width: calc(100vw - 32px);
+      height: 520px; max-height: calc(100vh - 120px);
+      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5); display: none; flex-direction: column; overflow: hidden;
+    }
+    #nv-window.open { display: flex; animation: nvpop 0.2s ease; }
+    @keyframes nvpop { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .nv-header {
+      display: flex; align-items: center; justify-content: space-between; padding: 16px;
+      background: linear-gradient(135deg, rgba(56,232,160,0.12), rgba(77,141,255,0.12));
+      border-bottom: 1px solid var(--border);
+    }
+    .nv-header-info { display: flex; align-items: center; gap: 12px; }
+    .nv-avatar {
+      width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #04121a; font-weight: 900;
+    }
+    .nv-header strong { font-size: 0.98rem; display: block; }
+    .nv-status { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .nv-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+    .nv-close { background: none; border: none; color: var(--muted); font-size: 1rem; cursor: pointer; }
+    .nv-close:hover { color: var(--text); }
+    .nv-body { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .nv-msg { max-width: 82%; padding: 11px 14px; border-radius: 14px; font-size: 0.92rem; line-height: 1.45; }
+    .nv-msg.bot { background: var(--bg-soft); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .nv-msg.user { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #04121a; align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 500; }
+    .nv-typing { align-self: flex-start; display: flex; gap: 4px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 14px; }
+    .nv-typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: nvb 1s infinite; }
+    .nv-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .nv-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes nvb { 0%,60%,100% { opacity: 0.3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-4px); } }
+    .nv-quick { display: flex; gap: 8px; padding: 0 14px 10px; flex-wrap: wrap; }
+    .nv-quick button {
+      background: var(--bg-soft); border: 1px solid var(--border); color: var(--text);
+      padding: 7px 11px; border-radius: 999px; font-size: 0.78rem; cursor: pointer; transition: border-color 0.2s;
+    }
+    .nv-quick button:hover { border-color: var(--accent); }
+    .nv-input { display: flex; gap: 8px; padding: 12px 14px; border-top: 1px solid var(--border); }
+    .nv-input input {
+      flex: 1; background: var(--bg-soft); border: 1px solid var(--border); color: var(--text);
+      padding: 11px 14px; border-radius: 10px; font-size: 0.92rem; outline: none; font-family: inherit;
+    }
+    .nv-input input:focus { border-color: var(--accent); }
+    .nv-input button {
+      border: none; cursor: pointer; width: 42px; border-radius: 10px; font-size: 1rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #04121a;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var win = document.getElementById('nv-window');
+      var launcher = document.getElementById('nv-launcher');
+      var closeBtn = win.querySelector('.nv-close');
+      var msgs = document.getElementById('nv-messages');
+      var form = document.getElementById('nv-form');
+      var input = document.getElementById('nv-text');
+      var quick = document.getElementById('nv-quick');
+      var greeted = false;
+
+      function open() {
+        win.classList.add('open');
+        if (!greeted) {
+          greeted = true;
+          bot("Bonjour 👋 Je suis l'assistant IA de Novaris Mobility. Comment puis-je vous aider avec la recharge, votre flotte ou nos services ?");
+        }
+        setTimeout(function () { input.focus(); }, 100);
+      }
+      function close() { win.classList.remove('open'); }
+      window.novarisChat = { open: open, close: close };
+
+      launcher.addEventListener('click', function () {
+        win.classList.contains('open') ? close() : open();
+      });
+      closeBtn.addEventListener('click', close);
+
+      function scroll() { msgs.scrollTop = msgs.scrollHeight; }
+      function add(text, who) {
+        var d = document.createElement('div');
+        d.className = 'nv-msg ' + who;
+        d.textContent = text;
+        msgs.appendChild(d);
+        scroll();
+      }
+      function user(t) { add(t, 'user'); }
+      function bot(t) { add(t, 'bot'); }
+
+      function typing() {
+        var t = document.createElement('div');
+        t.className = 'nv-typing';
+        t.innerHTML = '<span></span><span></span><span></span>';
+        msgs.appendChild(t);
+        scroll();
+        return t;
+      }
+
+      // Moteur de réponses (règles simples — branchable sur une vraie API IA)
+      function answer(q) {
+        var s = q.toLowerCase();
+        if (/borne|station|recharg.*où|trouver/.test(s))
+          return "Vous pouvez localiser une borne disponible en temps réel dans l'application Novaris ou sur la carte du réseau. Plus de 12 000 bornes sont connectées en ville, sur autoroute et à domicile. 📍";
+        if (/lancer|démarrer|comment.*recharg/.test(s))
+          return "Pour lancer une recharge : ouvrez l'app, scannez le QR de la borne, et la recharge démarre automatiquement. L'IA optimise la puissance selon le tarif le plus avantageux. ⚡";
+        if (/tarif|prix|coût|combien/.test(s))
+          return "Nos tarifs sont adaptés à votre usage : à l'unité, par abonnement ou en offre flotte. La recharge optimisée permet jusqu'à 40% d'économies. Souhaitez-vous un devis personnalisé ? 💸";
+        if (/flotte|entreprise|véhicules/.test(s))
+          return "Pour les flottes, Novaris pilote recharges, trajets et maintenance via nos agents IA. Je peux organiser un échange avec un expert — votre email ? 🚐";
+        if (/humain|conseiller|parler|contact|appel/.test(s))
+          return "Bien sûr ! Vous pouvez joindre un conseiller à powercompanysarl@gmail.com ou laisser votre numéro ici, on vous rappelle sous 24h. 🧑";
+        if (/bonjour|salut|hello|coucou|bonsoir/.test(s))
+          return "Bonjour ! 😊 Je peux vous renseigner sur la recharge, les tarifs, les flottes ou vous mettre en relation avec un conseiller. Que souhaitez-vous ?";
+        if (/merci|super|génial|parfait/.test(s))
+          return "Avec plaisir ! 🙌 N'hésitez pas si vous avez d'autres questions sur votre mobilité électrique.";
+        return "Bonne question ! Je transmets cela à nos équipes. En attendant, écrivez-nous à powercompanysarl@gmail.com et un expert Novaris vous répondra rapidement. 🌍";
+      }
+
+      function send(q) {
+        user(q);
+        var t = typing();
+        setTimeout(function () {
+          t.remove();
+          bot(answer(q));
+        }, 700 + Math.random() * 500);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = input.value.trim();
+        if (!v) return;
+        input.value = '';
+        send(v);
+      });
+
+      quick.addEventListener('click', function (e) {
+        var b = e.target.closest('button[data-q]');
+        if (b) send(b.getAttribute('data-q'));
+      });
+    })();
+  </script>
+
+  <!-- Moteur 3D cinématique (Three.js) -->
+  <script src="bugatti.js"></script>
+</body>
+</html>
