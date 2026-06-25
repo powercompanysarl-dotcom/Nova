@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novaris Mobility — Premium Swiss Leasing Platform</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #050505;
+      --graphite: #141414;
+      --dark-gray: #1a1a1a;
+      --gold: #D6B36A;
+      --gold-light: #e8c47c;
+      --white: #FFFFFF;
+      --accent-light: rgba(255, 255, 255, 0.1);
+      --accent-lighter: rgba(255, 255, 255, 0.05);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ============================================================================ */
+    /* GLASS EFFECTS & UTILITIES */
+    /* ============================================================================ */
+
+    .glass {
+      background: rgba(20, 20, 20, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      border-radius: 16px;
+    }
+
+    .glass-dark {
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(30px);
+      border: 1px solid rgba(214, 179, 106, 0.15);
+    }
+
+    /* ============================================================================ */
+    /* HEADER & NAVIGATION */
+    /* ============================================================================ */
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(214, 179, 106, 0.1);
+      padding: 1.5rem 2rem;
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--gold), var(--white));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    /* ============================================================================ */
+    /* BUTTONS */
+    /* ============================================================================ */
+
+    .btn-primary {
+      padding: 0.75rem 2rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--black);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(214, 179, 106, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(214, 179, 106, 0.4);
+    }
+
+    .btn-secondary {
+      padding: 0.75rem 2rem;
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(214, 179, 106, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    /* ============================================================================ */
+    /* MAIN CONTENT */
+    /* ============================================================================ */
+
+    main {
+      margin-top: 80px;
+      width: 100%;
+    }
+
+    /* ============================================================================ */
+    /* HERO SECTION */
+    /* ============================================================================ */
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 4rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 4rem;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-content h1 .highlight {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      line-height: 1.8;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vehicle-showcase {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 50%, rgba(214, 179, 106, 0.1), transparent);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vehicle-showcase::before {
+      content: '';
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      background: conic-gradient(from 0deg, var(--gold), transparent, transparent, var(--gold));
+      animation: rotate 8s linear infinite;
+      opacity: 0.3;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .vehicle-image {
+      width: 80%;
+      height: 80%;
+      background: linear-gradient(135deg, rgba(214, 179, 106, 0.1), rgba(214, 179, 106, 0.05));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      z-index: 2;
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* ============================================================================ */
+    /* SECTIONS */
+    /* ============================================================================ */
+
+    section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================================ */
+    /* COMPARATEUR */
+    /* ============================================================================ */
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .comparison-card {
+      background: var(--graphite);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .comparison-card:hover {
+      border-color: rgba(214, 179, 106, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(214, 179, 106, 0.1);
+    }
+
+    .comparison-card.selected {
+      background: linear-gradient(135deg, rgba(214, 179, 106, 0.1), rgba(214, 179, 106, 0.05));
+      border-color: var(--gold);
+    }
+
+    .vehicle-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    .spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .spec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(214, 179, 106, 0.1);
+    }
+
+    .spec-label {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .spec-value {
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .price-tag {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid rgba(214, 179, 106, 0.2);
+    }
+
+    /* ============================================================================ */
+    /* FILTERS & CATALOGUE */
+    /* ============================================================================ */
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: var(--graphite);
+      border-radius: 12px;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .filter-label {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .filter-group select,
+    .filter-group input {
+      padding: 0.75rem;
+      background: var(--black);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: inherit;
+    }
+
+    /* ============================================================================ */
+    /* VEHICLE GRID */
+    /* ============================================================================ */
+
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .vehicle-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .vehicle-card-inner {
+      background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0.6));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vehicle-card:hover .vehicle-card-inner {
+      background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(214, 179, 106, 0.05));
+      border-color: rgba(214, 179, 106, 0.4);
+      transform: translateY(-8px);
+    }
+
+    .vehicle-image-card {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, rgba(214, 179, 106, 0.1), rgba(214, 179, 106, 0.02));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      border: 1px solid rgba(214, 179, 106, 0.15);
+    }
+
+    .vehicle-info h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .vehicle-specs {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .spec {
+      background: rgba(214, 179, 106, 0.05);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(214, 179, 106, 0.1);
+    }
+
+    .vehicle-price {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(214, 179, 106, 0.1);
+    }
+
+    .price-label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .price-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .vehicle-action {
+      width: 100%;
+      padding: 0.75rem;
+      background: rgba(214, 179, 106, 0.1);
+      border: 1px solid rgba(214, 179, 106, 0.3);
+      color: var(--gold);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+
+    .vehicle-action:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* ============================================================================ */
+    /* SIMULATOR */
+    /* ============================================================================ */
+
+    .simulator-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .simulator-controls {
+      padding: 2rem;
+      background: var(--graphite);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .slider {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(214, 179, 106, 0.1);
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(214, 179, 106, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .value-display {
+      display: flex;
+      justify-content: space-between;
+      background: rgba(214, 179, 106, 0.05);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(214, 179, 106, 0.1);
+    }
+
+    .simulator-result {
+      background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(214, 179, 106, 0.05));
+      border: 1px solid rgba(214, 179, 106, 0.3);
+      border-radius: 16px;
+      padding: 3rem;
+      text-align: center;
+      backdrop-filter: blur(20px);
+    }
+
+    .result-label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-value {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ============================================================================ */
+    /* TESTIMONIALS */
+    /* ============================================================================ */
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: var(--graphite);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      border-color: rgba(214, 179, 106, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .stars {
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--black);
+      font-size: 1.2rem;
+    }
+
+    .author-info h4 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .author-info p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ============================================================================ */
+    /* FEATURES SECTION */
+    /* ============================================================================ */
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--graphite);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(214, 179, 106, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--gold);
+    }
+
+    .feature-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+
+    /* ============================================================================ */
+    /* APPLICATION WIZARD */
+    /* ============================================================================ */
+
+    .wizard-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--graphite);
+      border-radius: 16px;
+      padding: 3rem;
+      border: 1px solid rgba(214, 179, 106, 0.2);
+    }
+
+    .wizard-step {
+      display: none;
+    }
+
+    .wizard-step.active {
+      display: block;
+    }
+
+    .step-indicator {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .step-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(214, 179, 106, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      border: 2px solid rgba(214, 179, 106, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .step-dot.active {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+      transform: scale(1.1);
+    }
+
+    .step-dot.completed {
+      background: var(--success);
+      border-color: var(--success);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 0.9rem;
+    }
+
+    .form-input,
+    .form-select {
+      padding: 0.75rem;
+      background: var(--black);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: inherit;
+    }
+
+    .wizard-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    /* ============================================================================ */
+    /* DASHBOARD */
+    /* ============================================================================ */
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .dashboard-card {
+      background: var(--graphite);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard-card:hover {
+      border-color: rgba(214, 179, 106, 0.4);
+    }
+
+    .dashboard-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    /* ============================================================================ */
+    /* MODALS */
+    /* ============================================================================ */
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--graphite);
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 600px;
+      width: 100%;
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      position: relative;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .close-modal:hover {
+      transform: rotate(90deg);
+    }
+
+    /* ============================================================================ */
+    /* FOOTER */
+    /* ============================================================================ */
+
+    footer {
+      background: var(--graphite);
+      padding: 4rem 2rem 2rem;
+      border-top: 1px solid rgba(214, 179, 106, 0.1);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-section h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .footer-section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(214, 179, 106, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+    }
+
+    /* ============================================================================ */
+    /* AI ASSISTANT */
+    /* ============================================================================ */
+
+    .ai-assistant {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1500;
+    }
+
+    .ai-launcher {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(214, 179, 106, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ai-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(214, 179, 106, 0.4);
+    }
+
+    .ai-chat {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 400px;
+      height: 600px;
+      background: var(--graphite);
+      border-radius: 16px;
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .ai-chat.active {
+      display: flex;
+    }
+
+    .ai-messages {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .ai-message {
+      padding: 1rem;
+      border-radius: 12px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .ai-message.user {
+      background: var(--gold);
+      color: var(--black);
+      align-self: flex-end;
+      margin-left: auto;
+      font-weight: 600;
+    }
+
+    .ai-message.bot {
+      background: rgba(214, 179, 106, 0.1);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+    }
+
+    .ai-input {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .ai-input input {
+      flex: 1;
+      padding: 0.75rem;
+      background: var(--black);
+      border: 1px solid rgba(214, 179, 106, 0.2);
+      border-radius: 8px;
+      color: var(--white);
+    }
+
+    .ai-input button {
+      padding: 0.75rem 1rem;
+      background: var(--gold);
+      border: none;
+      border-radius: 8px;
+      color: var(--black);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    /* ============================================================================ */
+    /* RESPONSIVE */
+    /* ============================================================================ */
+
+    @media (max-width: 900px) {
+      header {
+        padding: 1rem;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .simulator-container {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-chat {
+        width: 350px;
+        height: 500px;
+      }
+    }
+
+    /* ============================================================================ */
+    /* ANIMATIONS */
+    /* ============================================================================ */
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .pulse {
+      animation: pulse 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <nav>
+      <div class="logo">NOVARIS</div>
+      <ul>
+        <li><a href="#catalogue">Catalogue</a></li>
+        <li><a href="#comparateur">Comparateur</a></li>
+        <li><a href="#simulator">Simulateur</a></li>
+        <li><a href="#testimonials">Avis</a></li>
+        <li><a href="#features">Avantages</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#" style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">FR | EN</a>
+        <button class="btn-primary">Mon Compte</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Swiss <span class="highlight">Premium Leasing</span></h1>
+        <p>Découvrez l'excellence automobile suisse. Leasing premium, transparent, et sans compromis.</p>
+        <div class="hero-ctas">
+          <button class="btn-primary">Explorer Catalogue</button>
+          <button class="btn-secondary">Simuler Mon Paiement</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="vehicle-showcase">
+          <div class="vehicle-image">🚗</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" style="background: linear-gradient(180deg, rgba(20,20,20,0.5), var(--black));">
+      <div class="section-header">
+        <h2>Pourquoi Novaris?</h2>
+        <p>Une plateforme conçue pour vos besoins</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <div class="feature-title">Sécurité Garantie</div>
+          <div class="feature-desc">Assurance complète et assistance 24/7</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <div class="feature-title">Prix Transparent</div>
+          <div class="feature-desc">Aucun frais caché, tout inclus</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Électrique & Écologique</div>
+          <div class="feature-desc">Flotte 100% écologique</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">Flexible</div>
+          <div class="feature-desc">Contrats ajustables à vos besoins</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <div class="feature-title">Maintenance Incluse</div>
+          <div class="feature-desc">Entretien gratuit pendant toute la durée</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <div class="feature-title">Technologie Premium</div>
+          <div class="feature-desc">Plateforme digitale ultra-moderne</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARATEUR -->
+    <section id="comparateur">
+      <div class="section-header">
+        <h2>Comparateur Véhicules</h2>
+        <p>Sélectionnez jusqu'à 3 véhicules pour les comparer</p>
+      </div>
+      <div class="comparison-grid" id="comparison-grid">
+        <!-- Les cartes de comparaison seront ajoutées par JavaScript -->
+      </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <button class="btn-primary" onclick="showComparison()">Voir Comparaison Détaillée</button>
+      </div>
+    </section>
+
+    <!-- CATALOGUE -->
+    <section id="catalogue">
+      <div class="section-header">
+        <h2>Notre Collection</h2>
+        <p>12 véhicules premium sélectionnés</p>
+      </div>
+      <div class="filters">
+        <div class="filter-group">
+          <label class="filter-label">Marque</label>
+          <select id="brand-filter" onchange="filterVehicles()">
+            <option>Tous</option>
+            <option>BMW</option>
+            <option>Mercedes</option>
+            <option>Audi</option>
+            <option>Porsche</option>
+            <option>Tesla</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Prix Mensuel</label>
+          <select id="price-filter" onchange="filterVehicles()">
+            <option>Tous les prix</option>
+            <option>0 - 3000</option>
+            <option>3000 - 5000</option>
+            <option>5000+</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Type Carburant</label>
+          <select id="fuel-filter" onchange="filterVehicles()">
+            <option>Tous</option>
+            <option>Électrique</option>
+            <option>Hybride</option>
+            <option>Essence</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Disponibilité</label>
+          <select id="availability-filter" onchange="filterVehicles()">
+            <option>Tous</option>
+            <option>Disponible immédiatement</option>
+            <option>Prochaines 2 semaines</option>
+          </select>
+        </div>
+      </div>
+      <div class="vehicle-grid" id="vehicle-grid">
+        <!-- Les cartes de véhicules seront générées par JavaScript -->
+      </div>
+    </section>
+
+    <!-- SIMULATOR -->
+    <section id="simulator" style="background: linear-gradient(180deg, rgba(20,20,20,0.5), var(--black));">
+      <div class="section-header">
+        <h2>Simulateur de Leasing</h2>
+        <p>Calculez votre paiement mensuel en temps réel</p>
+      </div>
+      <div class="simulator-container">
+        <div class="simulator-controls">
+          <div class="control-group">
+            <label class="filter-label">Durée du Contrat</label>
+            <input type="range" min="12" max="60" value="36" class="slider" id="duration-slider" oninput="updatePayment()">
+            <div class="value-display">
+              <span>Durée</span>
+              <span style="color: var(--gold); font-weight: 600;" id="duration-value">36 mois</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="filter-label">Kilométrage Annuel</label>
+            <input type="range" min="5000" max="50000" value="15000" step="1000" class="slider" id="mileage-slider" oninput="updatePayment()">
+            <div class="value-display">
+              <span>Km/an</span>
+              <span style="color: var(--gold); font-weight: 600;" id="mileage-value">15'000 km</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="filter-label">Prix du Véhicule</label>
+            <input type="range" min="30000" max="200000" value="80000" step="5000" class="slider" id="price-slider" oninput="updatePayment()">
+            <div class="value-display">
+              <span>Prix</span>
+              <span style="color: var(--gold); font-weight: 600;" id="price-value">CHF 80'000</span>
+            </div>
+          </div>
+        </div>
+        <div class="simulator-result">
+          <div class="result-label">Votre Paiement Mensuel</div>
+          <div class="result-value" id="monthly-payment">CHF 1'333</div>
+          <div style="color: rgba(255,255,255,0.6); margin-bottom: 2rem;">
+            Tout inclus • Assurance • Maintenance • Sans frais caché
+          </div>
+          <button class="btn-primary" onclick="openWizard()">Commencer Ma Demande</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="section-header">
+        <h2>Avis Clients</h2>
+        <p>Ce que nos clients en pensent</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">
+            "Expérience exceptionnelle du début à la fin. Novaris rend le leasing automobile aussi simple qu'un achat en ligne. Recommandé!"
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">JL</div>
+            <div class="author-info">
+              <h4>Jean-Louis Dupont</h4>
+              <p>Chef d'entreprise, Genève</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">
+            "Le simulateur est incroyablement précis. J'ai pu calculer exactement ce que je souhaitais payer par mois."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">MB</div>
+            <div class="author-info">
+              <h4>Marie Brunner</h4>
+              <p>Directrice Marketing, Zurich</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">
+            "Service client absolument fantastique. Aucune question sans réponse. C'est du vrai service premium!"
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">PM</div>
+            <div class="author-info">
+              <h4>Peter Meier</h4>
+              <p>Entrepreneur, Bâle</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section style="background: linear-gradient(135deg, rgba(214, 179, 106, 0.1), rgba(20, 20, 20, 0.5)); text-align: center;">
+      <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Prêt à Commencer?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Rejoignez des milliers de clients satisfaits. Votre premier paiement commence en quelques clics.
+      </p>
+      <button class="btn-primary" onclick="openWizard()">Demander Un Devis</button>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>NOVARIS</h3>
+        <ul>
+          <li><a href="#">À Propos</a></li>
+          <li><a href="#">Notre Équipe</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Client</h3>
+        <ul>
+          <li><a href="#">Mon Compte</a></li>
+          <li><a href="#">Suivi Demande</a></li>
+          <li><a href="#">Support 24/7</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Légal</h3>
+        <ul>
+          <li><a href="#">Politique Confidentialité</a></li>
+          <li><a href="#">Conditions Générales</a></li>
+          <li><a href="#">Contrat Leasing</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:hello@novaris.ch">hello@novaris.ch</a></li>
+          <li><a href="tel:+41443331000">+41 44 333 1000</a></li>
+          <li>Zurich, Suisse</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2024 Novaris Mobility. Swiss Made.</div>
+      <div>Plateforme de Leasing Ultra-Premium</div>
+    </div>
+  </footer>
+
+  <!-- APPLICATION WIZARD MODAL -->
+  <div class="modal" id="wizard-modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeWizard()">✕</button>
+
+      <div class="wizard-container">
+        <div class="step-indicator">
+          <div class="step-dot active" id="step-1">1</div>
+          <div class="step-dot" id="step-2">2</div>
+          <div class="step-dot" id="step-3">3</div>
+          <div class="step-dot" id="step-4">4</div>
+        </div>
+
+        <!-- STEP 1: Personal Info -->
+        <div class="wizard-step active" id="wizard-step-1">
+          <h2 style="margin-bottom: 1.5rem;">Vos Informations</h2>
+          <form class="form-group" style="gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Prénom & Nom</label>
+              <input type="text" class="form-input" placeholder="Jean Dupont">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="jean@example.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Téléphone</label>
+              <input type="tel" class="form-input" placeholder="+41 79 123 45 67">
+            </div>
+          </form>
+        </div>
+
+        <!-- STEP 2: Vehicle Selection -->
+        <div class="wizard-step" id="wizard-step-2">
+          <h2 style="margin-bottom: 1.5rem;">Véhicule Souhaité</h2>
+          <div class="form-group">
+            <label class="form-label">Sélectionnez un Véhicule</label>
+            <select class="form-select">
+              <option>BMW M440i - CHF 2'899/mois</option>
+              <option>Mercedes-AMG C63 - CHF 3'499/mois</option>
+              <option>Audi e-tron GT - CHF 4'299/mois</option>
+              <option>Porsche 911 - CHF 5'999/mois</option>
+              <option>Tesla Model S - CHF 3'699/mois</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-top: 2rem;">
+            <label class="form-label">Couleur Souhaitée</label>
+            <select class="form-select">
+              <option>Noir Métallisé</option>
+              <option>Blanc Glacier</option>
+              <option>Bleu Océan</option>
+              <option>Gris Graphite</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- STEP 3: Contract Terms -->
+        <div class="wizard-step" id="wizard-step-3">
+          <h2 style="margin-bottom: 1.5rem;">Conditions du Contrat</h2>
+          <div class="form-group">
+            <label class="form-label">Durée (mois)</label>
+            <select class="form-select">
+              <option>24 mois</option>
+              <option>36 mois</option>
+              <option>48 mois</option>
+              <option>60 mois</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Kilométrage Annuel</label>
+            <select class="form-select">
+              <option>10'000 km</option>
+              <option>15'000 km</option>
+              <option>20'000 km</option>
+              <option>30'000 km</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              <input type="checkbox"> Assurance Premium (incluse)
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 4: Review & Submit -->
+        <div class="wizard-step" id="wizard-step-4">
+          <h2 style="margin-bottom: 1.5rem;">Résumé & Confirmation</h2>
+          <div style="background: rgba(214,179,106,0.05); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+            <p style="margin-bottom: 0.5rem;"><strong>Véhicule:</strong> BMW M440i</p>
+            <p style="margin-bottom: 0.5rem;"><strong>Durée:</strong> 36 mois</p>
+            <p style="margin-bottom: 0.5rem;"><strong>Kilométrage:</strong> 15'000 km/an</p>
+            <p style="border-top: 1px solid rgba(214,179,106,0.2); padding-top: 1rem; margin-top: 1rem; color: var(--gold); font-weight: 600; font-size: 1.3rem;">
+              Paiement Mensuel: CHF 1'333
+            </p>
+          </div>
+          <p style="color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; font-size: 0.9rem;">
+            En cliquant sur "Soumettre", vous acceptez nos conditions générales et votre demande sera traitée dans les 24 heures.
+          </p>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="wizard-buttons">
+          <button class="btn-secondary btn-sm" id="prev-btn" onclick="changeStep(-1)" style="display: none;">← Précédent</button>
+          <button class="btn-primary btn-sm" id="next-btn" onclick="changeStep(1)">Suivant →</button>
+          <button class="btn-primary btn-sm" id="submit-btn" onclick="submitApplication()" style="display: none;">Soumettre ✓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI ASSISTANT -->
+  <div class="ai-assistant">
+    <div class="ai-launcher" onclick="toggleChat()">💬</div>
+    <div class="ai-chat" id="ai-chat">
+      <div style="font-weight: 700; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(214, 179, 106, 0.1);">
+        Novaris Assistant
+      </div>
+      <div class="ai-messages" id="ai-messages">
+        <div class="ai-message bot">
+          Bonjour! Comment puis-je vous aider aujourd'hui? 🚗
+        </div>
+      </div>
+      <div class="ai-input">
+        <input type="text" id="ai-input" placeholder="Posez votre question...">
+        <button onclick="sendMessage()">📤</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Vehicle Data
+    const vehicles = [
+      { id: 1, name: "BMW M440i", price: 2899, brand: "BMW", fuel: "Electric", year: 2024, availability: "immediate" },
+      { id: 2, name: "Mercedes-AMG C63", price: 3499, brand: "Mercedes", fuel: "Gasoline", year: 2024, availability: "immediate" },
+      { id: 3, name: "Audi e-tron GT", price: 4299, brand: "Audi", fuel: "Electric", year: 2024, availability: "immediate" },
+      { id: 4, name: "Porsche 911", price: 5999, brand: "Porsche", fuel: "Gasoline", year: 2024, availability: "2weeks" },
+      { id: 5, name: "Tesla Model S", price: 3699, brand: "Tesla", fuel: "Electric", year: 2024, availability: "immediate" },
+      { id: 6, name: "Range Rover Sport", price: 4799, brand: "Range Rover", fuel: "Hybrid", year: 2024, availability: "immediate" },
+      { id: 7, name: "Audi RS6", price: 4899, brand: "Audi", fuel: "Gasoline", year: 2024, availability: "2weeks" },
+      { id: 8, name: "BMW i7", price: 3999, brand: "BMW", fuel: "Electric", year: 2024, availability: "immediate" },
+      { id: 9, name: "Mercedes EQS", price: 4199, brand: "Mercedes", fuel: "Electric", year: 2024, availability: "immediate" },
+      { id: 10, name: "Porsche Cayenne", price: 6299, brand: "Porsche", fuel: "Hybrid", year: 2024, availability: "2weeks" },
+      { id: 11, name: "Tesla Model X", price: 4099, brand: "Tesla", fuel: "Electric", year: 2024, availability: "immediate" },
+      { id: 12, name: "BMW M5", price: 5499, brand: "BMW", fuel: "Gasoline", year: 2024, availability: "immediate" },
+    ];
+
+    // Render Vehicles
+    function renderVehicles(vehiclesToRender = vehicles) {
+      const grid = document.getElementById('vehicle-grid');
+      grid.innerHTML = vehiclesToRender.map(v => `
+        <div class="vehicle-card" onclick="openVehicleModal('${v.name}', ${v.price})">
+          <div class="vehicle-card-inner">
+            <div class="vehicle-image-card">🚗</div>
+            <div class="vehicle-info">
+              <h3>${v.name}</h3>
+              <div class="vehicle-specs">
+                <span class="spec">${v.year}</span>
+                <span class="spec">${v.fuel}</span>
+              </div>
+            </div>
+            <div class="vehicle-price">
+              <span class="price-label">À partir de</span>
+              <span class="price-value">CHF ${v.price.toLocaleString('de-CH')}</span>
+            </div>
+            <button class="vehicle-action">Détails</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Comparison Grid
+    function renderComparison() {
+      const grid = document.getElementById('comparison-grid');
+      grid.innerHTML = vehicles.slice(0, 6).map(v => `
+        <div class="comparison-card" onclick="toggleSelection(this, '${v.name}')">
+          <div class="vehicle-name">${v.name}</div>
+          <div class="spec-list">
+            <div class="spec-item">
+              <span class="spec-label">Prix Mensuel</span>
+              <span class="spec-value">CHF ${v.price.toLocaleString('de-CH')}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Carburant</span>
+              <span class="spec-value">${v.fuel}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Année</span>
+              <span class="spec-value">${v.year}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Disponibilité</span>
+              <span class="spec-value">${v.availability === 'immediate' ? 'Immédiate' : '2 semaines'}</span>
+            </div>
+          </div>
+          <div class="price-tag">CHF ${v.price.toLocaleString('de-CH')}/mois</div>
+        </div>
+      `).join('');
+    }
+
+    // Filter Vehicles
+    function filterVehicles() {
+      const brand = document.getElementById('brand-filter').value;
+      const priceRange = document.getElementById('price-filter').value;
+      const fuel = document.getElementById('fuel-filter').value;
+
+      let filtered = vehicles;
+
+      if (brand !== 'Tous') filtered = filtered.filter(v => v.brand === brand);
+      if (fuel !== 'Tous') filtered = filtered.filter(v => v.fuel === fuel);
+
+      if (priceRange !== 'Tous les prix') {
+        const [min, max] = priceRange.split(' - ').map(Number);
+        filtered = filtered.filter(v => v.price >= min && v.price <= max);
+      }
+
+      renderVehicles(filtered);
+    }
+
+    // Payment Calculator
+    function updatePayment() {
+      const duration = parseInt(document.getElementById('duration-slider').value);
+      const mileage = parseInt(document.getElementById('mileage-slider').value);
+      const price = parseInt(document.getElementById('price-slider').value);
+
+      document.getElementById('duration-value').textContent = duration + ' mois';
+      document.getElementById('mileage-value').textContent = mileage.toLocaleString('de-CH') + ' km';
+      document.getElementById('price-value').textContent = 'CHF ' + price.toLocaleString('de-CH');
+
+      const basePayment = price / duration;
+      const depreciationFactor = 0.6;
+      const mileageFactor = 1 + (mileage - 15000) * 0.00005;
+      const finalPayment = Math.round(basePayment * depreciationFactor * mileageFactor);
+
+      document.getElementById('monthly-payment').textContent = 'CHF ' + finalPayment.toLocaleString('de-CH');
+    }
+
+    // Wizard Navigation
+    let currentStep = 1;
+
+    function changeStep(direction) {
+      const totalSteps = 4;
+      currentStep += direction;
+
+      if (currentStep < 1) currentStep = 1;
+      if (currentStep > totalSteps) currentStep = totalSteps;
+
+      updateWizardDisplay();
+    }
+
+    function updateWizardDisplay() {
+      for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById(`wizard-step-${i}`);
+        const dot = document.getElementById(`step-${i}`);
+
+        if (i === currentStep) {
+          step.classList.add('active');
+          dot.classList.add('active');
+        } else {
+          step.classList.remove('active');
+          dot.classList.remove('active');
+        }
+      }
+
+      document.getElementById('prev-btn').style.display = currentStep === 1 ? 'none' : 'block';
+      document.getElementById('next-btn').style.display = currentStep === 4 ? 'none' : 'block';
+      document.getElementById('submit-btn').style.display = currentStep === 4 ? 'block' : 'none';
+    }
+
+    function openWizard() {
+      document.getElementById('wizard-modal').classList.add('active');
+      currentStep = 1;
+      updateWizardDisplay();
+    }
+
+    function closeWizard() {
+      document.getElementById('wizard-modal').classList.remove('active');
+    }
+
+    function submitApplication() {
+      alert('✓ Demande soumise! Nous vous contacterons dans les 24 heures.');
+      closeWizard();
+    }
+
+    // Chat Functions
+    function toggleChat() {
+      const chat = document.getElementById('ai-chat');
+      chat.classList.toggle('active');
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('ai-input');
+      const message = input.value.trim();
+      if (!message) return;
+
+      const messagesContainer = document.getElementById('ai-messages');
+      const userMsg = document.createElement('div');
+      userMsg.className = 'ai-message user';
+      userMsg.textContent = message;
+      messagesContainer.appendChild(userMsg);
+
+      input.value = '';
+
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'ai-message bot';
+        const responses = [
+          'Excellente question! Quel véhicule vous intéresse?',
+          'Je recommande notre simulator pour calculer votre budget exact.',
+          'Nos clients aiment surtout la transparence et l\'absence de frais cachés.',
+          'Vous pouvez démarrer une demande en quelques minutes!',
+          'Tous nos véhicules incluent l\'assurance et la maintenance.'
+        ];
+        botMsg.textContent = responses[Math.floor(Math.random() * responses.length)];
+        messagesContainer.appendChild(botMsg);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 500);
+    }
+
+    document.getElementById('ai-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    // Modal Functions
+    function openVehicleModal(name, price) {
+      alert(`${name} - CHF ${price.toLocaleString('de-CH')}/mois\n\nCliquez sur "Demander Un Devis" pour plus d'informations.`);
+    }
+
+    // Initialize
+    renderVehicles();
+    renderComparison();
+    updatePayment();
+  </script>
+</body>
+</html>
